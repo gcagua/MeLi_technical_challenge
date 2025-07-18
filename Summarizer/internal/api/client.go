@@ -26,6 +26,7 @@ func MakeAPIRequest(prompt, token string) (string, error) {
 	}
 
 	// creates request and adds headers
+	// this is the documentation for the huggingface api: https://huggingface.co/facebook/bart-large-cnn
 	req, err := http.NewRequest("POST", os.Getenv("HUGGINGFACE_ENDPOINT"), bytes.NewBuffer(jsonData))
 	if err != nil {
 		return "", fmt.Errorf("error creating the request: %v", err)
