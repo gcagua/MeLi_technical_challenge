@@ -122,6 +122,6 @@ if __name__ == "__main__":
     print(best_in_genre("")) # Genre must be a non empty string
     print(best_in_genre(2)) # Genre must be a non empty string
 
-    print(best_in_genre("akhdasd")) # Genre does not exists, result should be none
+    print(best_in_genre("akhdasd")) # Genre does not exist, result should be none
     print(best_in_genre("animation")) # Genre exists, two series have the same score (Rick and morty & Avatar: the Last airbender)
     print(best_in_genre("action ")) # Genre exists and has only one series with the greatest score: GoT
