@@ -5,13 +5,15 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/gcagua/MeLi_technical_challenge/Summarizer/types"
 )
 
-// parses annd validates CLI glags and environment variables
-func validateEnvAndArgs() (SummaryType, string, string, error) {
+// parses and validates CLI glags and environment variables
+func ValidateEnvAndArgs() (types.SummaryType, string, string, error) {
 	token := os.Getenv("HUGGINGFACE_TOKEN")
 	if token == "" {
-		return Short, "", "", fmt.Errorf("Huggingface token not found")
+		return types.Short, "", "", fmt.Errorf("huggingface token not found")
 	}
 
 	typeParam := flag.String("type", "", "Type of the summary")
@@ -37,17 +39,17 @@ func validateEnvAndArgs() (SummaryType, string, string, error) {
 	}
 
 	if typeValue == "" { // if summary-type value is an empty string, returns the error
-		return Short, "", "", fmt.Errorf("Summary type is required (--type or -t)")
+		return types.Short, "", "", fmt.Errorf("summary type is required (--type or -t)")
 	}
 	typeValue = strings.ToLower(typeValue)
 
-	enumValue, err := stringTypeToEnum(typeValue) // checks if the summary type exists
+	enumValue, err := types.StringTypeToEnum(typeValue) // checks if the summary type exists
 	if err != nil {
-		return Short, "", "", err
+		return types.Short, "", "", err
 	}
 
 	if inputValue == "" { // if the name of the file is an empty strng, returns the error
-		return Short, "", "", fmt.Errorf("Input type is required (--input or as an argument)")
+		return types.Short, "", "", fmt.Errorf("input type is required (--input or as an argument)")
 	}
 
 	return enumValue, inputValue, token, nil

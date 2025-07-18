@@ -28,7 +28,7 @@ type Response struct {
 	SummarizedText string `json:"summary_text"`
 }
 
-func stringTypeToEnum(summaryType string) (SummaryType, error) {
+func StringTypeToEnum(summaryType string) (SummaryType, error) {
 	switch summaryType {
 	case "short":
 		return Short, nil

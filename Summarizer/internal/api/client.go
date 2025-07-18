@@ -7,11 +7,19 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"time"
+
+	"github.com/gcagua/MeLi_technical_challenge/Summarizer/internal/sanitize"
+	"github.com/gcagua/MeLi_technical_challenge/Summarizer/types"
+)
+
+const (
+	RequestTimeout = 30 * time.Second
 )
 
 // creates and executes the request to an api of the huggingface bart endpoint given a prompt and a token
 func makeAPIRequest(prompt, token string) (string, error) {
-	body := Request{Inputs: prompt}
+	body := types.Request{Inputs: prompt}
 	jsonData, err := json.Marshal(body)
 	if err != nil { // check if there's an error marshalling the body
 		return "", fmt.Errorf("Error marshaling the request: %v", err)
@@ -47,7 +55,7 @@ func makeAPIRequest(prompt, token string) (string, error) {
 	}
 
 	// parses the response into a Response object
-	var parsedBody []Response
+	var parsedBody []types.Response
 	if err := json.Unmarshal(responseBody, &parsedBody); err != nil {
 		return "", fmt.Errorf("Error parsing the response: %v", err)
 	}
@@ -63,11 +71,11 @@ func makeAPIRequest(prompt, token string) (string, error) {
 	}
 
 	// sanitizes the output file to remove any undesired patterns
-	revisedText := sanitizeFile(parsedBody[0].SummarizedText)
+	revisedText := sanitize.SanitizeFile(parsedBody[0].SummarizedText)
 	return revisedText, nil
 }
 
 // builds the prompt based on the summary type and the file content
-func buildPrompt(summaryType SummaryType, content string) string {
+func BuildPrompt(summaryType types.SummaryType, content string) string {
 	return fmt.Sprintf("%s: \n\n%s", summaryType, content)
 }

@@ -7,8 +7,12 @@ import (
 	"strings"
 )
 
+const (
+	MaxFileSize = 1024 * 1024 * 10 // 10MB limit,
+)
+
 // reads the file securely
-func readFileSecurely(path string) (string, error) {
+func ReadFileSecurely(path string) (string, error) {
 	cleanPath := filepath.Clean(path)
 	if strings.Contains(cleanPath, "..") { // checks if the user is trying to access to files out of the current directory
 		return "", fmt.Errorf("Path traversal not allowed")

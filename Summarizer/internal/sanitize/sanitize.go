@@ -6,7 +6,7 @@ import (
 )
 
 // sanitizes the files checking for the most common general and bart-specific prompt injections
-func sanitizeFile(input string) string {
+func SanitizeFile(input string) string {
 	promptInjectionPatterns := []string{
 		"ignore previous instructions",
 		"ignore all previous",
