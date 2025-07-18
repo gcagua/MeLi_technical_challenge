@@ -30,7 +30,7 @@ func SanitizeFile(input string) string {
 		pattern_lower := strings.ToLower(pattern)
 		if strings.Contains(input, pattern_lower) {
 			fmt.Println("The input file contains malicious content")
-			input = strings.ReplaceAll(input, pattern, "")
+			input = strings.ReplaceAll(input, pattern_lower, "")
 		}
 	}
 	return input
