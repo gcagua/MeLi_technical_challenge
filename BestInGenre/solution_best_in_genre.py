@@ -6,6 +6,7 @@ def best_in_genre(genre: str) -> str:
     """
     Returns the TV series with the highest IMDB rating for a given genre
     If two series have the same rating, the smaller name is returned
+    Python version is 3.13.5
     """
         
     try:
