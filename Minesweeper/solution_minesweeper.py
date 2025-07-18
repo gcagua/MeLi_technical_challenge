@@ -8,6 +8,7 @@ def minesweeper(matrix: List[List[int]]) -> List[List[int]]:
     """
     Main function to process the matrix and return the minesweeper result.
     Each non-mine cell is replaced by the number of surrounding mines and each mine cell is replaced by a constant.
+    Python version is 3.13.5
     """
     try:
         if validate_matrix(matrix): 
@@ -104,7 +105,7 @@ if __name__ == "__main__":
     [
         [0, 1, 1],
         [1, 1, 1],
-    ]) # Matriz must be square
+    ]) # Matrix must be square
 
     matrix_contains_unexpected_characters = minesweeper(
     [
