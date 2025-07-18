@@ -80,10 +80,9 @@ A Go CLI tool that summarizes text files using the HuggingFace API. It supports 
 
 **How to run:**
 ```sh
-go build -o summarize ./cmd/summarize
-export HUGGINGFACE_TOKEN=your_token
-export HUGGINGFACE_ENDPOINT=https://api-inference.huggingface.co/models/facebook/bart-large-cnn
-./summarize --type bullet --input [test.txt](http://_vscodecontentref_/4)
+go run Summarizer\cmd\summarize main.go --type ( bullet || short || medium) --input test.txt
+or go run Summarizer\cmd\summarize main.go -t ( bullet || short || medium) --input test.txt
+or go run Summarizer\cmd\summarize main.go -t ( bullet || short || medium) test.txt
 
 ```
 
@@ -95,5 +94,4 @@ go test ./cmd/summarize
 
 **Project structure** 
 - Each project is self-contained with its own dependencies and environment (see respective requirements.txt or Go modules).
-- For Python projects, virtual environments are included in the *Env folders.
 - For Go, dependencies are managed via Go modules.
