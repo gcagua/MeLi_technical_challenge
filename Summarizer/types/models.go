@@ -10,14 +10,14 @@ const (
 	Medium
 )
 
-var summaryTypePrompt = map[SummaryType]string{
+var SummaryTypePrompt = map[SummaryType]string{
 	Short:  "Make a summary (1-2 sentences) of: ",
 	Bullet: "Make a list of bullet points of: ",
 	Medium: "Write a paragraph summary of the following: ",
 }
 
 func (summaryType SummaryType) String() string {
-	return summaryTypePrompt[summaryType]
+	return SummaryTypePrompt[summaryType]
 }
 
 type Request struct {
